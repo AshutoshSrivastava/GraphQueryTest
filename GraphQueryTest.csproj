@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="11.2.2" />
   </ItemGroup>
 
 </Project>
