@@ -3,7 +3,7 @@ using GraphQueryTest.Data;
 using GraphQueryTest.Models;
 using HotChocolate;
 
-namespace GraphQueryTest.GraphQL
+namespace GraphQueryTest.GraphQLs
 {
     public class Query
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GraphQueryTest.Data;
-using GraphQueryTest.GraphQL;
+using GraphQueryTest.GraphQLs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GraphQL.Server.Ui.Voyager;
 
 namespace GraphQueryTest
 {
@@ -58,6 +59,12 @@ namespace GraphQueryTest
                 // });
 
                 endpoints.MapGraphQL();
+            });
+
+            app.UseGraphQLVoyager(new GraphQL.Server.Ui.Voyager.VoyagerOptions() // GraphQLVoyagerOptions()
+            {
+                GraphQLEndPoint = "/graphql"
+                // Path = "graphql-voyager"
             });
         }
     }
