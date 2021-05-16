@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GraphQueryTest.Data;
+using GraphQueryTest.GraphQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +33,10 @@ namespace GraphQueryTest
                 // .Replace("localhost",DockerHostMachineIpAddress)
                 );
             });
+
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,10 +51,13 @@ namespace GraphQueryTest
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                // endpoints.MapGet("/", async context =>
+                // {
+                //     // await context.Response.WriteAsync("Hello World!");
+                //     endpoints.MapGraphQL();
+                // });
+
+                endpoints.MapGraphQL();
             });
         }
     }
