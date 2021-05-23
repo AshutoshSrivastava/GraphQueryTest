@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GraphQL.Server.Ui.Voyager;
+using GraphQueryTest.GraphQLs.Platforms;
 
 namespace GraphQueryTest
 {
@@ -38,7 +39,9 @@ namespace GraphQueryTest
 
             services
                 .AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddQueryType<Query>()
+                .AddType<PlatformType>()
+                .AddProjections(); // for pulling child objects
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
