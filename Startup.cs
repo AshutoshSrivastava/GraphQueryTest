@@ -41,6 +41,7 @@ namespace GraphQueryTest
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
                 .AddType<PlatformType>()
                 .AddType<CommandType>()
                 .AddProjections() // for pulling child objects
