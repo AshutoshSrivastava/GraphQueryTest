@@ -42,11 +42,13 @@ namespace GraphQueryTest
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>() // for subscription
                 .AddType<PlatformType>()
                 .AddType<CommandType>()
                 .AddProjections() // for pulling child objects
                 .AddFiltering() // for filtering
                 .AddSorting()   //for sorting
+                .AddInMemorySubscriptions() // for subscription manage memory of subscribers
                 ;
         }
 
@@ -57,6 +59,8 @@ namespace GraphQueryTest
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseWebSockets();
 
             app.UseRouting();
 
