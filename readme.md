@@ -17,3 +17,47 @@
 
 ## Add Migration
 * dotnet ef migrations add AddPlatformToDb
+
+## For Adding Filtering and Sorting
+        
+* Query.cs        
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context) // this ScopedService is used for parallel query
+        {
+            return context.Platforms;
+        }
+* Startup.cs
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddType<PlatformType>()
+                .AddType<CommandType>()
+                .AddProjections() // for pulling child objects
+                .AddFiltering() // for filtering
+                .AddSorting()   //for sorting
+                ;
+* Filtering :
+query{
+  platform(order: {name: ASC})
+  {
+    id
+    name
+    commands
+    {
+      commandLine
+      howTo
+      id
+    }
+  }
+}
+
+* Sorting :
+query{
+  platform(order: {name: ASC})
+  {
+    name
+  }
+}
+
+        

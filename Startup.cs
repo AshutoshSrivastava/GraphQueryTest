@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GraphQueryTest.Data;
-using GraphQueryTest.GraphQLs;
+using GraphQueryTest.Graphs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GraphQL.Server.Ui.Voyager;
-using GraphQueryTest.GraphQLs.Platforms;
+using GraphQueryTest.Graphs.Platforms;
+using GraphQueryTest.Graphs.Commands;
 
 namespace GraphQueryTest
 {
@@ -41,7 +42,11 @@ namespace GraphQueryTest
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddType<PlatformType>()
-                .AddProjections(); // for pulling child objects
+                .AddType<CommandType>()
+                .AddProjections() // for pulling child objects
+                .AddFiltering() // for filtering
+                .AddSorting()   //for sorting
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

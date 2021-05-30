@@ -4,12 +4,14 @@ using GraphQueryTest.Models;
 using HotChocolate;
 using HotChocolate.Data;
 
-namespace GraphQueryTest.GraphQLs
+namespace GraphQueryTest.Graphs
 {
     public class Query
     {
         [UseDbContext(typeof(AppDbContext))]
         [UseProjection] // pull child object too
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context) // this ScopedService is used for parallel query
         {
             return context.Platforms;
@@ -17,6 +19,8 @@ namespace GraphQueryTest.GraphQLs
         
         [UseDbContext(typeof(AppDbContext))]
         [UseProjection] // pull child object too
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Command> GetCommands([ScopedService] AppDbContext context) // this ScopedService is used for parallel query
         {
             return context.Commands;

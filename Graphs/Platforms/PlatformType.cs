@@ -4,7 +4,7 @@ using GraphQueryTest.Models;
 using HotChocolate;
 using HotChocolate.Types;
 
-namespace GraphQueryTest.GraphQLs.Platforms
+namespace GraphQueryTest.Graphs.Platforms
 {
     public class PlatformType : ObjectType<Platform>
     {
